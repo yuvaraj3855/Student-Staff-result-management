@@ -11,7 +11,20 @@ export class AuthService {
     // Implement your authentication logic here
     // Make an HTTP POST request to your authentication API or backend
     // Return an observable to handle the response
-    // return this.http.post('/api/login', { username, password });
-    return { username, password };
+    return this.http.post('http://localhost:3000/api/auth/login', {
+      username,
+      password,
+    });
+    // return { username, password };
+  }
+  register(username: string, password: string) {
+    // Implement your authentication logic here
+    // Make an HTTP POST request to your authentication API or backend
+    // Return an observable to handle the response
+    return this.http.post('http://localhost:3000/api/auth/register', {
+      username,
+      password,
+    });
+    // return { username, password };
   }
 }

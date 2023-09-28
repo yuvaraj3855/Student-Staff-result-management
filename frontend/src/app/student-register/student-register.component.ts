@@ -1,33 +1,42 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-student-register',
   templateUrl: './student-register.component.html',
   styleUrls: ['./student-register.component.css'],
 })
 export class StudentRegisterComponent {
-  // Define properties to store user input (e.g., registration form fields)
-  firstName: string = '';
-  lastName: string = '';
-  registrationNumber: string = '';
-  // Add more properties as needed for your registration form
+  // Define properties to store user input (username and password)
+  username: string = '';
+  password: string = '';
 
   // Inject the Router into the component's constructor for navigation
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  // Implement the registration function
+  // Implement the login function
   register() {
-    // Implement your registration logic here
-    // Example: Send registration data to the server via an HTTP request
-    const registrationData = {
-      firstName: this.firstName,
-      lastName: this.lastName,
-      registrationNumber: this.registrationNumber,
-      // Include additional fields as needed
-    };
-
-    // Assuming a successful registration, navigate to a success page
-    // You can replace this with your desired navigation logic
-    this.router.navigate(['/registration-success']);
+    this.authService.register(this.username, this.password).subscribe(
+      (response) => {
+        // Handle successful login response here (e.g., navigate to a dashboard)
+        console.log('Login successful');
+        this.router.navigate(['/student-result']);
+      },
+      (error) => {
+        // Handle login error (e.g., display an error message)
+        console.error('Login failed:', error);
+      }
+    );
+    // this.authService.login(this.username, this.password);
+    // console.log(this.username);
+    // // Implement your authentication logic here
+    // // Example: Check if username and password are valid
+    // if (this.username === this.username && this.password === this.password) {
+    //   // Authentication successful, navigate to the student dashboard
+    //   this.router.navigate(['/student-result']);
+    // } else {
+    //   // Authentication failed, you can display an error message or handle it as needed
+    //   console.error('Login failed. Invalid credentials.');
+    // }
   }
 }

@@ -1,5 +1,5 @@
 export const AppConfig = {
-  apiUrl: 'https://api.example.com',
+  apiUrl: 'http://localhost:3000/',
   enableLogging: true,
   // Add more configuration options here
 };

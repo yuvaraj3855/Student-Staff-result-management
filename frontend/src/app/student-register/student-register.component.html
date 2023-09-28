@@ -1,22 +1,20 @@
-<div class="student-register">
-    <h2>Student Registration</h2>
-
-    <form ng-submit="registerStudent()" novalidate>
-        <div class="form-group">
-            <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" ng-model="student.firstName" required>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2>Student Register</h2>
+            <form (ngSubmit)="register()" #loginForm="ngForm">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" [(ngModel)]="username" class="form-control"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" [(ngModel)]="password" class="form-control"
+                        required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" ng-model="student.lastName" required>
-        </div>
-        <div class="form-group">
-            <label for="registrationNumber">Registration Number:</label>
-            <input type="text" id="registrationNumber" ng-model="student.registrationNumber" required>
-        </div>
-        <!-- Add more form fields as needed -->
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Register</button>
-        </div>
-    </form>
+    </div>
 </div>
