@@ -1,8 +1,24 @@
 <div class="student-result">
     <h2>Student Result</h2>
     <div class="result-details">
-        <p><strong>Student Name:</strong> {{ studentName }}</p>
+        <p><strong>Name:</strong> {{ studentName }}</p>
         <p><strong>Registration Number:</strong> {{ registrationNumber }}</p>
-        <!-- Add more result details here -->
     </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Score</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let subject of subjects">
+                <td>{{ subject.subject }}</td>
+                <td>{{ subject.score }}</td>
+                <td>{{ subject.grade }}</td>
+            </tr>
+        </tbody>
+    </table>
+
 </div>

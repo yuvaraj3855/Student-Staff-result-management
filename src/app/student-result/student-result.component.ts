@@ -9,7 +9,7 @@ export class StudentResultComponent implements OnInit {
   // Define properties to store student result data
   studentName: string = ''; // Student's name
   registrationNumber: string = ''; // Student's registration number
-  // Define more properties for other result data as needed
+  subjects: SubjectResult[] = []; // Array to store subject-wise result data
 
   // Constructor for initializing data (you can inject services here)
   constructor() {}
@@ -27,7 +27,21 @@ export class StudentResultComponent implements OnInit {
     setTimeout(() => {
       this.studentName = 'John Doe'; // Set student's name
       this.registrationNumber = '1234567890'; // Set student's registration number
-      // Set more result data properties here
+
+      // Simulated subject-wise result data
+      this.subjects = [
+        { subject: 'Mathematics', score: 95, grade: 'A+' },
+        { subject: 'Science', score: 88, grade: 'A' },
+        // Add more subjects with score and grade data
+      ];
     }, 1000); // Simulate a 1-second delay
   }
+}
+
+class SubjectResult {
+  constructor(
+    public subject: string = '',
+    public score: number = 0,
+    public grade: string = ''
+  ) {}
 }
