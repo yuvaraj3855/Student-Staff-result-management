@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { StudentLoginComponent } from './student-login/student-login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 // app.controller('StudentRegisterController', StudentRegisterController);
 // app.controller('StudentLoginController', StudentLoginController);
@@ -34,6 +35,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatToolbarModule,
+    HttpClientModule,
   ],
   providers: [{ provide: ApiService, useValue: AppConfig }],
   bootstrap: [AppComponent],
