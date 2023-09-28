@@ -1,0 +1,18 @@
+/* Styling for the student-result component */
+
+.student-result {
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  margin-bottom: 20px;
+}
+
+.result-details {
+  margin-top: 10px;
+}
+
+.result-details p {
+  margin: 5px 0;
+}
+
+/* You can add more styling as needed */

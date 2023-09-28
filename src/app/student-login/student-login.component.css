@@ -1,0 +1,49 @@
+/* Add your custom styles for the student login component here */
+
+.container {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Center the login form vertically and horizontally */
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure the form covers the entire viewport height */
+}
+
+/* Style the form inputs and button */
+.form-control {
+  width: 100%;
+  padding: 10px;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff; /* Change to your desired button color */
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Change to your desired hover color */
+}
+
+/* Center the form within its container */
+.col-md-6 {
+  text-align: center;
+}
+
+/* Style the form header (e.g., "Student Login") */
+h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* Add any additional styles as needed */

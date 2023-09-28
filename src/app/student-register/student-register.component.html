@@ -1,0 +1,22 @@
+<div class="student-register">
+    <h2>Student Registration</h2>
+
+    <form ng-submit="registerStudent()" novalidate>
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" ng-model="student.firstName" required>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" ng-model="student.lastName" required>
+        </div>
+        <div class="form-group">
+            <label for="registrationNumber">Registration Number:</label>
+            <input type="text" id="registrationNumber" ng-model="student.registrationNumber" required>
+        </div>
+        <!-- Add more form fields as needed -->
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+    </form>
+</div>
