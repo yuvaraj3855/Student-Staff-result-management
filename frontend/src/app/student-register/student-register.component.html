@@ -2,19 +2,27 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <h2>Student Register</h2>
-            <form (ngSubmit)="register()" #loginForm="ngForm">
+            <form (ngSubmit)="register()" #registerForm="ngForm">
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" [(ngModel)]="username" class="form-control"
                         required>
                 </div>
+                <!-- Display error message for username -->
+                <div *ngIf="usernameInvalid" class="alert alert-danger">Username is required.</div>
+
                 <div class="form-group">
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" [(ngModel)]="password" class="form-control"
                         required>
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <!-- Display error message for password -->
+                <div *ngIf="passwordInvalid" class="alert alert-danger">Password is required.</div>
+
+                <button type="submit" class="btn btn-primary">Register</button>
             </form>
+            <!-- Display general error message -->
+            <div *ngIf="registrationError" class="alert alert-danger">{{ registrationError }}</div>
         </div>
     </div>
 </div>

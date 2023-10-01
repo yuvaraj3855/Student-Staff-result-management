@@ -1,33 +1,20 @@
-const pool = require('../config/db'); // Assuming you have a MySQL connection pool
-
-// Function to create a new user
-function createUser(userData, callback) {
-    pool.query(
-        'INSERT INTO users (username, password) VALUES (?, ?)',
-        [userData.username, userData.password],
-        (error, results) => {
-            if (error) {
-                callback(error, null);
-                return;
-            }
-            callback(null, results.insertId);
-        }
-    );
+const { User } = require('../mysql/util')
+async function createUser(userData) {
+    try {
+        const user = await User.create(userData);
+        return user;
+    } catch (error) {
+        throw error;
+    }
 }
 
-// Function to find a user by username
-function findUserByUsername(username, callback) {
-    pool.query('SELECT * FROM users WHERE username = ?', [username], (error, results) => {
-        if (error) {
-            callback(error, null);
-            return;
-        }
-        if (results.length === 0) {
-            callback(null, null); // User not found
-        } else {
-            callback(null, results[0]); // User found
-        }
-    });
+async function findUserByUsername(username) {
+    try {
+        const user = await User.findOne({ where: { username } });
+        return user;
+    } catch (error) {
+        throw error;
+    }
 }
 
 module.exports = {

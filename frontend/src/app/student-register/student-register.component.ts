@@ -1,42 +1,56 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+
 @Component({
   selector: 'app-student-register',
   templateUrl: './student-register.component.html',
   styleUrls: ['./student-register.component.css'],
 })
 export class StudentRegisterComponent {
-  // Define properties to store user input (username and password)
   username: string = '';
   password: string = '';
+  usernameInvalid: boolean = false;
+  passwordInvalid: boolean = false;
+  registrationError: string | null = null;
 
-  // Inject the Router into the component's constructor for navigation
   constructor(private authService: AuthService, private router: Router) {}
 
-  // Implement the login function
   register() {
+    // Reset error flags and messages
+    this.usernameInvalid = false;
+    this.passwordInvalid = false;
+    this.registrationError = null;
+
+    if (!this.username) {
+      this.usernameInvalid = true;
+      return; // Stop registration if username is missing
+    }
+
+    if (!this.password) {
+      this.passwordInvalid = true;
+      return; // Stop registration if password is missing
+    }
+
     this.authService.register(this.username, this.password).subscribe(
       (response) => {
-        // Handle successful login response here (e.g., navigate to a dashboard)
-        console.log('Login successful');
+        // Handle successful registration response here
+        console.log('Registration successful');
         this.router.navigate(['/student-result']);
       },
       (error) => {
-        // Handle login error (e.g., display an error message)
-        console.error('Login failed:', error);
+        // Handle registration error and display error message
+        console.error('Registration failed:', error);
+        if (error.status === 409) {
+          // Username already exists
+          this.registrationError =
+            'Username already exists. Please choose a different username.';
+        } else {
+          // Other server errors
+          this.registrationError =
+            'Registration failed. Please try again later.';
+        }
       }
     );
-    // this.authService.login(this.username, this.password);
-    // console.log(this.username);
-    // // Implement your authentication logic here
-    // // Example: Check if username and password are valid
-    // if (this.username === this.username && this.password === this.password) {
-    //   // Authentication successful, navigate to the student dashboard
-    //   this.router.navigate(['/student-result']);
-    // } else {
-    //   // Authentication failed, you can display an error message or handle it as needed
-    //   console.error('Login failed. Invalid credentials.');
-    // }
   }
 }

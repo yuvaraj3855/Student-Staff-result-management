@@ -1,15 +1,18 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const UserModel = require('../models/User'); // Replace with your user model
+require('dotenv').config();
 
+const SECRET_KEY = process.env.SECRET_KEY;
+console.log(SECRET_KEY)
 // User login
 exports.login = async (req, res) => {
     const { username, password } = req.body;
     console.log(1)
     try {
         // Find the user by username in your database
-        const user = await UserModel.findUserByUsername({ username });
-
+        const user = await UserModel.findUserByUsername(username)
+        console.log(user.password)
         // Check if the user exists
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
@@ -23,7 +26,7 @@ exports.login = async (req, res) => {
         }
 
         // Generate a JWT token for authentication
-        const token = jwt.sign({ userId: user._id }, 'your_secret_key_here', { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user._id }, SECRET_KEY, { expiresIn: '1h' });
 
         // Return the token to the client
         res.status(200).json({ token });
@@ -39,7 +42,7 @@ exports.register = async (req, res) => {
 
     try {
         // Check if the user already exists
-        const existingUser = await UserModel.findUserByUsername({ username });
+        const existingUser = await UserModel.findUserByUsername(username)
 
         if (existingUser) {
             return res.status(409).json({ message: 'User already exists' });
@@ -49,12 +52,10 @@ exports.register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Create a new user in your database
-        const newUser = new UserModel.createUser({
+        const newUser = UserModel.createUser({
             username,
             password: hashedPassword,
         });
-
-        await newUser.save();
 
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {

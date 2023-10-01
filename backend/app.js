@@ -9,20 +9,20 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-const db = require('./config/db');
+const sequelize = require('./config/db');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-db.getConnection((err, connection) => {
-    if (err) {
-        console.error('Database connection error:', err);
-        return;
+(async () => {
+    try {
+        await sequelize.authenticate();
+        console.log('Connected to the database');
+        await sequelize.sync(); // Synchronize the models with the database
+    } catch (error) {
+        console.error('Database connection error:', error);
     }
-    console.log('Connected to the database');
-
-    connection.release();
-});
+})();
 
 // Routes
 const authRoutes = require('./routes/authRoutes'); // Import your authentication routes
