@@ -1,0 +1,57 @@
+.staff-dashboard {
+  background-color: #f5f5f5;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.staff-dashboard header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.staff-dashboard h1 {
+  font-size: 28px;
+}
+
+.staff-dashboard p {
+  font-size: 18px;
+  color: #333;
+}
+
+.staff-dashboard nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.staff-dashboard nav li {
+  margin-right: 20px;
+}
+
+.staff-dashboard nav a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.staff-dashboard nav a:hover {
+  color: #0056b3;
+}
+
+.staff-dashboard main {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
+  overflow: auto;
+}
+
+/* Adjust main content styling based on your requirements */

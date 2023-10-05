@@ -1,0 +1,55 @@
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2>Login</h2>
+            <form (ngSubmit)="login()" #loginForm="ngForm">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" [(ngModel)]="username" class="form-control"
+                        required>
+                </div>
+                <div *ngIf="usernameInvalid" class="alert alert-danger">Username is required.</div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" [(ngModel)]="password" class="form-control"
+                        required>
+                </div>
+                <div *ngIf="passwordInvalid" class="alert alert-danger">Password is required.</div>
+
+
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <div *ngIf="loginError" class="alert alert-danger">{{ loginError }}</div>
+        </div>
+    </div>
+</div> -->
+
+<div class="overlay">
+    <form (ngSubmit)="login()">
+        <div class="con">
+            <header class="head-form">
+                <h2>Log In</h2>
+                <p>Login here using your Register number and Password</p>
+            </header>
+            <br>
+            <div class="field-set">
+                <span class="input-item">
+                    <i class="fa fa-user-circle"></i>
+                </span>
+                <input placeholder="Username" type="text" id="username" name="username" [(ngModel)]="username"
+                    class="form-input" required>
+                <br>
+                <span class="input-item">
+                    <i class="fa fa-key"></i>
+                </span>
+                <input placeholder="Password" id="password" type="password" name="password" [(ngModel)]="password"
+                    class="form-input" required>
+                <br>
+                <div *ngIf="passwordInvalid" class="alert alert-danger">Password is required.</div>
+                <button class="log-in">Log In</button>
+            </div>
+        </div>
+    </form>
+    <div *ngIf="loginError" class="alert alert-danger">{{ loginError }}</div>
+</div>
