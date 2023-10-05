@@ -12,12 +12,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { StudentLoginComponent } from './student-login/student-login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StudentRegisterComponent } from './student-register/student-register.component';
-
-// app.controller('StudentRegisterController', StudentRegisterController);
-// app.controller('StudentLoginController', StudentLoginController);
-// app.controller('StudentResultController', StudentResultController);
+import { LoginComponent } from './login/login.component';
+import { AuthInterceptor } from './auth.interceptor';
+import { StaffDashboardComponent } from './staff-dashboard/staff-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +26,8 @@ import { StudentRegisterComponent } from './student-register/student-register.co
     StudentResultComponent,
     StudentDashboardComponent,
     NavbarComponent,
+    LoginComponent,
+    StaffDashboardComponent,
   ],
   imports: [
     FormsModule,
@@ -37,7 +38,14 @@ import { StudentRegisterComponent } from './student-register/student-register.co
     MatToolbarModule,
     HttpClientModule,
   ],
-  providers: [{ provide: ApiService, useValue: AppConfig }],
+  providers: [
+    { provide: ApiService, useValue: AppConfig },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,29 +1,28 @@
-const pool = require('../config/db')
+const { Results } = require('../mysql/util')
 
-// Function to create a new result
 function createResult(resultData, callback) {
-    pool.query(
-        'INSERT INTO results (student_id, subject, score, grade) VALUES (?, ?, ?, ?)',
-        [resultData.student_id, resultData.subject, resultData.score, resultData.grade],
-        (error, results) => {
-            if (error) {
-                callback(error, null);
-                return;
-            }
-            callback(null, results.insertId);
-        }
-    );
+    Results.create({
+        register_id: resultData.register_id,
+        subject: resultData.subject,
+        score: resultData.score,
+        grade: resultData.grade,
+    })
+        .then(result => {
+            callback(null, result);
+        })
+        .catch(error => {
+            callback(error, null);
+        });
 }
 
-// Function to get all results
 function getAllResults(callback) {
-    pool.query('SELECT * FROM results', (error, results) => {
-        if (error) {
+    Results.findAll()
+        .then(results => {
+            callback(null, results);
+        })
+        .catch(error => {
             callback(error, null);
-            return;
-        }
-        callback(null, results);
-    });
+        });
 }
 
 // Export the model functions

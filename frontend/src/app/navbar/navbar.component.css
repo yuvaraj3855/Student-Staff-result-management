@@ -2,8 +2,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #e3fdf5;
 }
 
 .spacer {
   flex: 1;
+}
+.dashboard {
+  color: black;
+}
+.button {
+  color: black !important;
 }

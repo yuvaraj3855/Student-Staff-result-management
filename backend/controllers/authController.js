@@ -29,7 +29,7 @@ exports.login = async (req, res) => {
         const token = jwt.sign({ userId: user._id }, SECRET_KEY, { expiresIn: '1h' });
 
         // Return the token to the client
-        res.status(200).json({ token });
+        res.status(200).json({ token, user });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error' });
@@ -38,7 +38,7 @@ exports.login = async (req, res) => {
 
 // User registration
 exports.register = async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, role } = req.body;
 
     try {
         // Check if the user already exists
@@ -55,6 +55,7 @@ exports.register = async (req, res) => {
         const newUser = UserModel.createUser({
             username,
             password: hashedPassword,
+            role
         });
 
         res.status(201).json({ message: 'User registered successfully' });
